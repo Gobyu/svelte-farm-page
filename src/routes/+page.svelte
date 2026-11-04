@@ -15,7 +15,7 @@
 	<h3 class="mt-2 mb-2 text-2xl font-semibold tracking-tight md:text-2xl">All of our products are ORGANIC (no pesticides, herbicides, fertilizers, antibiotics, growth hormones, GMOs)</h3>
 	<div class="flex 100wh overflow-hidden rounded-lg border border-gray-300 shadow-md mb-2 mr-2">
 		<img 
-		src="/src/lib/assets/Butternut Squash.jpg" 
+		src="https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Butternut%20Squash.jpg" 
 		alt="Butternut Squash"
 		class="w-100 object-cover"
 		/>
@@ -32,7 +32,7 @@
 	</div>
 	<div class="flex 100wh overflow-hidden rounded-lg border border-gray-300 shadow-md mb-2 mr-2">
 		<img 
-		src="/src/lib/assets/Kabocha Squash.jpg" 
+		src="https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Kabocha%20Squash.jpg" 
 		alt="Kabocha Squash"
 		class="w-100 object-cover"
 		/>
