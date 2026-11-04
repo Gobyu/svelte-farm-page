@@ -21,7 +21,7 @@
 		/>
 
 		<div class="p-5">
-			<h2 class="mb-2 text-3xl font-bold">Organic Butternut Squash</h2>
+			<h2 class="mb-2 text-3xl font-bold">Butternut Squash</h2>
 			<p class="mb-3 text-2xl text-gray-500 font-bold">
 			Price: $10 for 8lbs ($1.25/lb)
 			</p>
@@ -38,7 +38,7 @@
 		/>
 
 		<div class="p-5">
-			<h2 class="mb-2 text-3xl font-bold">Organic Butternut Squash</h2>
+			<h2 class="mb-2 text-3xl font-bold">Butternut Squash</h2>
 			<p class="mb-3 text-2xl text-gray-500 font-bold">
 			Price: $10 for 8lbs ($1.25/lb)
 			</p>
@@ -49,5 +49,24 @@
 	</div>
 </section>
 <section class="mx-auto max-w-6xl px-4 py-10">
-		<h1 class="mt-3 mb-3 text-4xl font-bold tracking-tight md:text-5xl">Upcoming Products (next year!)</h1>
+	<h1 class="mt-3 mb-3 text-4xl font-bold tracking-tight md:text-5xl">Upcoming Products (next year!)</h1>
+	<div class="flex 100wh overflow-hidden rounded-lg border border-gray-300 shadow-md mb-2 mr-2">
+		<img 
+		src="https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Green%20Beans.jpg" 
+		alt="Green Bean Pods"
+		class="w-100 object-cover"
+		/>
+
+		<div class="p-5">
+			<h2 class="mb-2 text-3xl font-bold">Green Bean Pods</h2>
+			<p class="mb-3 text-2xl text-gray-500 font-bold">
+			Price: TBD
+			<br/>
+			Availability: September
+			</p>
+			<p class="mb-3 text-2xl text-gray-400">
+			Green bean pods are long, thin, green vegetables that have a mild, slightly sweet, and earthy taste. They are firm and crunchy when raw, but become softer and more tender when cooked. 
+			</p>
+		</div>
+	</div>
 </section>
