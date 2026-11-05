@@ -2,3 +2,11 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+
+html {
+	color-scheme: light;
+}
+
+html.dark {
+	color-scheme: dark;
+}

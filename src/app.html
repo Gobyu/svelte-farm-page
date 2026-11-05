@@ -1,7 +1,26 @@
 <!doctype html>
-<html lang="%paraglide.lang%">
+<html lang="%paraglide.lang%" dir="%paraglide.dir%">
 	<head>
 		<meta charset="utf-8" />
+		<script>
+			(function () {
+				try {
+					const stored = localStorage.getItem('theme');
+
+					const dark =
+						stored === 'dark' ||
+						(stored !== 'light' &&
+							window.matchMedia('(prefers-color-scheme: dark)').matches);
+
+					document.documentElement.classList.toggle('dark', dark);
+				} catch {
+					document.documentElement.classList.toggle(
+						'dark',
+						window.matchMedia('(prefers-color-scheme: dark)').matches
+					);
+				}
+			})();
+		</script>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>

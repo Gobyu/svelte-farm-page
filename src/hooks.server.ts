@@ -1,21 +1,19 @@
-import { sequence } from '@sveltejs/kit/hooks';
-import { paraglideMiddleware } from '$lib/paraglide/server';
+import { getTextDirection } from '$lib/paraglide/runtime.js';
+import { paraglideMiddleware } from '$lib/paraglide/server.js';
+import { sequence, type Handle } from '@sveltejs/kit/hooks';
 import type { Handle } from '@sveltejs/kit';
-import { getUserFromCookies } from '$lib/server/auth';
-
-const originalHandle: Handle = async ({ event, resolve }) => {
-	event.locals.user = getUserFromCookies(event.cookies);
-
-	return resolve(event);
-};
 
 const handleParaglide: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
-		event.request = request;
-
-		return resolve(event, {
-			transformPageChunk: ({ html }) => html.replace('%paraglide.lang%', locale)
-		});
+		return resolve(
+			{ ...event, request },
+			{
+				transformPageChunk: ({ html }) =>
+					html
+						.replace('%paraglide.lang%', locale)
+						.replace('%paraglide.dir%', getTextDirection(locale))
+			}
+		);
 	});
 
-export const handle = sequence(originalHandle, handleParaglide);
+export const handle: Handle = handleParaglide;

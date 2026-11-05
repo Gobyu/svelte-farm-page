@@ -1,48 +1,67 @@
 
 <script lang="ts">
-	const products = [
+	import { m } from '$lib/paraglide/messages.js';
+
+	type Product = {
+		name: () => string;
+		image: string;
+		alt: () => string;
+		price: string;
+		quantity: () => string;
+		perPound: () => string;
+		description: () => string;
+		tags: Array<() => string>;
+	};
+
+	type UpcomingProduct = {
+		name: () => string;
+		image: string;
+		alt: () => string;
+		availability: () => string;
+		description: () => string;
+		tags: Array<() => string>;
+	};
+
+	const products: Product[] = [
 		{
-			name: 'Butternut Squash',
+			name: m.products_butternut_name,
 			image: 'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Butternut%20Squash.jpg',
-			alt: 'Fresh butternut squash',
+			alt: m.products_butternut_alt,
 			price: '$10',
-			quantity: '8 lbs',
-			perPound: '$1.25/lb',
-			description:
-				'Naturally sweet with a smooth, creamy texture and a slightly nutty flavour. Perfect for hearty soups, oven roasting, and homemade baking.',
-			tags: ['Sweet & Nutty', 'Great for Roasting']
+			quantity: m.products_quantity_eight_pounds,
+			perPound: m.products_unit_price,
+			description: m.products_butternut_description,
+			tags: [m.products_butternut_tag_sweet, m.products_butternut_tag_roasting]
 		},
 		{
-			name: 'Kabocha Squash',
+			name: m.products_kabocha_name,
 			image: 'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Kabocha%20Squash.jpg',
-			alt: 'Fresh kabocha squash',
+			alt: m.products_kabocha_alt,
 			price: '$10',
-			quantity: '8 lbs',
-			perPound: '$1.25/lb',
-			description:
-				'A Japanese winter squash with rich orange flesh, a naturally sweet flavour, and a soft, fluffy texture. Delicious roasted, steamed, or added to soups.',
-			tags: ['Naturally Sweet', 'Japanese Squash']
+			quantity: m.products_quantity_eight_pounds,
+			perPound: m.products_unit_price,
+			description: m.products_kabocha_description,
+			tags: [m.products_kabocha_tag_sweet, m.products_kabocha_tag_japanese]
 		}
 	];
 
-	const upcomingProducts = [
+	const upcomingProducts: UpcomingProduct[] = [
 		{
-			name: 'Green Bean Pods',
+			name: m.products_green_beans_name,
 			image: 'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Green%20Beans.jpg',
-			alt: 'Fresh green bean pods',
-			availability: 'September',
-			description:
-				'Fresh, crisp green beans with a mild, slightly sweet flavour. Enjoy them steamed, sautéed, or added to your favourite dishes.',
-			tags: ['Fresh & Crunchy', 'Seasonal']
+			alt: m.products_green_beans_alt,
+			availability: m.products_september,
+			description: m.products_green_beans_description,
+			tags: [m.products_green_beans_tag_crunchy, m.products_green_beans_tag_seasonal]
 		}
 	];
 </script>
 
 <svelte:head>
-	<title>Farm Fresh Produce | Happy Farmhouse</title>
+	<title>{m.products_page_title()}</title>
 	<meta
 		name="description"
-		content="Discover our naturally grown farm produce, including butternut squash, kabocha squash, and seasonal vegetables."
+		content={m.products_meta_description()}
 	/>
 </svelte:head>
 
@@ -64,28 +83,27 @@
 				class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#c7d9bd] bg-white/70 px-5 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#47704b] dark:border-[#45614a] dark:bg-[#2a4030] dark:text-[#b8d5b2]"
 			>
 				<span class="h-2 w-2 rounded-full bg-[#6a985d]"></span>
-				Naturally Grown
+				{m.products_eyebrow()}
 			</div>
 
 			<h1
 				class="mx-auto max-w-3xl text-5xl font-bold tracking-tight text-[#23452f] sm:text-6xl md:text-7xl dark:text-[#e5f0e2]"
 			>
-				Fresh From
-				<span class="italic text-[#729765] dark:text-[#a4c39b]">Our Farm.</span>
+				{m.products_hero_title_first()}
+				<span class="italic text-[#729765] dark:text-[#a4c39b]">{m.products_hero_title_second()}</span>
 			</h1>
 
 			<p
 				class="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#637364] sm:text-lg dark:text-[#b8cbb5]"
 			>
-				Good food starts with good growing practices. Explore our selection of fresh,
-				naturally grown vegetables, straight from our farm to your table.
+				{m.products_hero_description()}
 			</p>
 
 			<a
 				href="#available"
 				class="mt-8 inline-flex items-center gap-3 rounded-full bg-[#315c3b] px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-green-900/10 transition hover:-translate-y-1 hover:bg-[#24492e] dark:bg-[#527d56] dark:hover:bg-[#65976a]"
 			>
-				Explore Our Produce
+				{m.products_explore_button()}
 				<span aria-hidden="true">↓</span>
 			</a>
 		</div>
@@ -99,22 +117,22 @@
 		>
 			<span class="flex items-center gap-2">
 				<span class="text-lg text-[#71996b]">✦</span>
-				Naturally Grown
+				{m.products_eyebrow()}
 			</span>
 
 			<span class="flex items-center gap-2">
 				<span class="text-lg text-[#71996b]">✦</span>
-				No Synthetic Pesticides
+				{m.products_feature_no_pesticides()}
 			</span>
 
 			<span class="flex items-center gap-2">
 				<span class="text-lg text-[#71996b]">✦</span>
-				Non-GMO
+				{m.products_feature_non_gmo()}
 			</span>
 
 			<span class="flex items-center gap-2">
 				<span class="text-lg text-[#71996b]">✦</span>
-				Farm Fresh
+				{m.products_feature_farm_fresh()}
 			</span>
 		</div>
 	</section>
@@ -126,19 +144,19 @@
 					<p
 						class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#78966b] dark:text-[#a4c39b]"
 					>
-						Fresh Picks
+						{m.products_fresh_picks()}
 					</p>
 
 					<h2
 						class="text-3xl font-bold tracking-tight text-[#253e2b] sm:text-4xl dark:text-[#e5f0e2]"
 					>
-						Available Products
+						{m.products_available_title()}
 					</h2>
 
 					<p
 						class="mt-3 max-w-xl text-base leading-7 text-[#798478] dark:text-[#b8cbb5]"
 					>
-						Discover our carefully grown selection of fresh produce.
+						{m.products_available_description()}
 					</p>
 				</div>
 
@@ -146,7 +164,7 @@
 					class="flex w-fit items-center gap-2 rounded-full bg-[#e8f1e5] px-4 py-2 text-xs font-semibold text-[#47704b] dark:bg-[#34543a] dark:text-[#c8e5bf]"
 				>
 					<span class="h-2 w-2 rounded-full bg-[#5b9c57]"></span>
-					Currently Available
+					{m.products_currently_available()}
 				</div>
 			</div>
 
@@ -160,14 +178,14 @@
 						>
 							<img
 								src={product.image}
-								alt={product.alt}
+								alt={product.alt()}
 								class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
 							/>
 
 							<span
 								class="absolute left-5 top-5 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-[#35643e] shadow-sm dark:bg-[#24382a]/95 dark:text-[#c8e5bf]"
 							>
-								Farm Fresh
+								{m.products_feature_farm_fresh()}
 							</span>
 						</div>
 
@@ -176,20 +194,20 @@
 								<h3
 									class="text-2xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]"
 								>
-									{product.name}
+									{product.name()}
 								</h3>
 
 								<span
 									class="rounded-lg bg-[#eaf3e7] px-3 py-1.5 text-xs font-semibold text-[#47764b] dark:bg-[#34543a] dark:text-[#c8e5bf]"
 								>
-									Available
+									{m.products_available_status()}
 								</span>
 							</div>
 
 							<p
 								class="mt-4 min-h-24 text-sm leading-7 text-[#718073] sm:text-base dark:text-[#b8cbb5]"
 							>
-								{product.description}
+								{product.description()}
 							</p>
 
 							<div class="mt-5 flex flex-wrap gap-2">
@@ -197,7 +215,7 @@
 									<span
 										class="rounded-full border border-[#e2e9df] bg-[#f7faf5] px-3 py-1.5 text-xs font-medium text-[#68806a] dark:border-[#45614a] dark:bg-[#2e4934] dark:text-[#b8cbb5]"
 									>
-										{tag}
+										{tag()}
 									</span>
 								{/each}
 							</div>
@@ -209,7 +227,7 @@
 									<p
 										class="mb-1 text-xs font-medium uppercase tracking-wider text-[#8a9689] dark:text-[#a4b8a4]"
 									>
-										Price per {product.quantity}
+										{m.products_price_per()} {product.quantity()}
 									</p>
 
 									<div class="flex items-baseline gap-2">
@@ -222,7 +240,7 @@
 										<span
 											class="text-sm font-medium text-[#8a9689] dark:text-[#a4b8a4]"
 										>
-											/ {product.quantity}
+											/ {product.quantity()}
 										</span>
 									</div>
 								</div>
@@ -230,7 +248,7 @@
 								<span
 									class="rounded-xl bg-[#f0f5ed] px-4 py-3 text-sm font-semibold text-[#4c7650] dark:bg-[#34543a] dark:text-[#c8e5bf]"
 								>
-									{product.perPound}
+									{product.perPound()}
 								</span>
 							</div>
 						</div>
@@ -244,19 +262,19 @@
 				<p
 					class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#78966b] dark:text-[#a4c39b]"
 				>
-					Coming Soon
+					{m.products_upcoming_eyebrow()}
 				</p>
 
 				<h2
 					class="text-3xl font-bold tracking-tight text-[#253e2b] sm:text-4xl dark:text-[#e5f0e2]"
 				>
-					Growing Next Year
+					{m.products_upcoming_title()}
 				</h2>
 
 				<p
 					class="mt-3 max-w-xl text-base leading-7 text-[#798478] dark:text-[#b8cbb5]"
 				>
-					Here's a little preview of what's coming to our farm next season.
+					{m.products_upcoming_description()}
 				</p>
 			</div>
 
@@ -270,14 +288,14 @@
 						>
 							<img
 								src={product.image}
-								alt={product.alt}
+								alt={product.alt()}
 								class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
 							/>
 
 							<span
 								class="absolute left-5 top-5 rounded-full bg-[#fff7e5] px-4 py-2 text-xs font-bold text-[#a17b32] shadow-sm dark:bg-[#57482c] dark:text-[#f0d69b]"
 							>
-								Coming Next Year
+								{m.products_coming_next_year()}
 							</span>
 						</div>
 
@@ -285,13 +303,13 @@
 							<h3
 								class="text-2xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]"
 							>
-								{product.name}
+								{product.name()}
 							</h3>
 
 							<p
 								class="mt-4 min-h-24 text-sm leading-7 text-[#718073] sm:text-base dark:text-[#b8cbb5]"
 							>
-								{product.description}
+								{product.description()}
 							</p>
 
 							<div class="mt-5 flex flex-wrap gap-2">
@@ -299,7 +317,7 @@
 									<span
 										class="rounded-full border border-[#e2e9df] bg-[#f7faf5] px-3 py-1.5 text-xs font-medium text-[#68806a] dark:border-[#45614a] dark:bg-[#2e4934] dark:text-[#b8cbb5]"
 									>
-										{tag}
+										{tag()}
 									</span>
 								{/each}
 							</div>
@@ -311,21 +329,21 @@
 									<p
 										class="mb-1 text-xs font-medium uppercase tracking-wider text-[#8a9689] dark:text-[#a4b8a4]"
 									>
-										Expected Availability
+										{m.products_expected_availability()}
 									</p>
 
 									<p class="text-xl font-bold text-[#315c3b] dark:text-[#b5dfaa]">
-										{product.availability}
+										{product.availability()}
 									</p>
 								</div>
 
 								<div class="text-right">
 									<p class="mb-1 text-xs font-medium text-[#8a9689] dark:text-[#a4b8a4]">
-										Price
+										{m.products_price()}
 									</p>
 
 									<p class="text-lg font-bold text-[#728575] dark:text-[#c0d0bc]">
-										To Be Announced
+										{m.products_price_tbd()}
 									</p>
 								</div>
 							</div>
@@ -339,16 +357,15 @@
 	<section class="bg-[#315c3b] px-5 py-14 text-center text-white dark:bg-[#1c3424]">
 		<div class="mx-auto max-w-2xl">
 			<p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#b8d5b2]">
-				Grown With Care
+				{m.products_footer_eyebrow()}
 			</p>
 
 			<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-				Naturally Better Produce.
+				{m.products_footer_title()}
 			</h2>
 
 			<p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-[#d4e3d1] sm:text-base">
-				Our produce is grown without synthetic pesticides, herbicides, or fertilizers,
-				with a focus on natural growing practices and quality.
+				{m.products_footer_description()}
 			</p>
 		</div>
 	</section>

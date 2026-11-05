@@ -1,36 +1,52 @@
-
 <script lang="ts">
-	const contactLocations = [
+	import { m } from '$lib/paraglide/messages.js';
+
+	type Contact = {
+		label: () => string;
+		value: string;
+		href: string;
+		note?: () => string;
+	};
+
+	type ContactLocation = {
+		name: () => string;
+		secondaryName: () => string;
+		subtitle: () => string;
+		languages: () => string;
+		contacts: Contact[];
+	};
+
+	const contactLocations: ContactLocation[] = [
 		{
-			name: 'Waterford',
-			chineseName: '沃特福德',
-			subtitle: 'Farm Location',
-			languages: 'English & 中文',
+			name: m.contact_waterford_name,
+			secondaryName: m.contact_waterford_secondary_name,
+			subtitle: m.contact_waterford_subtitle,
+			languages: m.contact_languages,
 			contacts: [
 				{
-					label: 'Phone | 电话',
+					label: m.contact_phone,
 					value: '(437) 340-7096',
 					href: 'tel:+14373407096'
 				}
 			]
 		},
 		{
-			name: 'Toronto',
-			chineseName: '多伦多',
-			subtitle: 'Toronto Contact',
-			languages: 'English & 中文',
+			name: m.contact_toronto_name,
+			secondaryName: m.contact_toronto_secondary_name,
+			subtitle: m.contact_toronto_subtitle,
+			languages: m.contact_languages,
 			contacts: [
 				{
-					label: 'English | 英文',
+					label: m.contact_english,
 					value: '(647) 858-1069',
 					href: 'sms:+16478581069',
-					note: 'Text messages preferred'
+					note: m.contact_english_note
 				},
 				{
-					label: 'Chinese | 中文',
+					label: m.contact_chinese,
 					value: '(416) 878-6719',
-					href: 'tel:+16478786719',
-					note: '下午 5:30 前请发短信，下午 5:30 后请来电'
+					href: 'tel:+14168786719',
+					note: m.contact_chinese_note
 				}
 			]
 		}
@@ -38,11 +54,8 @@
 </script>
 
 <svelte:head>
-	<title>Contact Us | Happy Farmhouse</title>
-	<meta
-		name="description"
-		content="Contact Happy Farmhouse in Waterford or Toronto. We are happy to assist you in English or Chinese."
-	/>
+	<title>{m.contact_page_title()}</title>
+	<meta name="description" content={m.contact_meta_description()} />
 </svelte:head>
 
 <div
@@ -54,7 +67,6 @@
 		<div
 			class="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-[#dbe7d2] opacity-70 blur-3xl dark:bg-[#36573b] dark:opacity-30"
 		></div>
-
 		<div
 			class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-[#d4e3cb] opacity-60 blur-3xl dark:bg-[#36573b] dark:opacity-30"
 		></div>
@@ -64,27 +76,23 @@
 				class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#c7d9bd] bg-white/70 px-5 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#47704b] dark:border-[#45614a] dark:bg-[#2a4030] dark:text-[#b8d5b2]"
 			>
 				<span class="h-2 w-2 rounded-full bg-[#6a985d]"></span>
-				GET IN TOUCH
+				{m.contact_eyebrow()}
 			</div>
 
 			<h1
 				class="mx-auto max-w-3xl text-5xl font-bold tracking-tight text-[#23452f] sm:text-6xl md:text-7xl dark:text-[#e5f0e2]"
 			>
-				Contact
-				<span class="italic text-[#729765] dark:text-[#a4c39b]">Us.</span>
+				{m.contact_hero_title()}
 			</h1>
 
-			<p
-				class="mt-4 text-xl font-semibold tracking-wide text-[#78966b] dark:text-[#a4c39b]"
-			>
-				联系我们
+			<p class="mt-4 text-xl font-semibold tracking-wide text-[#78966b] dark:text-[#a4c39b]">
+				{m.contact_hero_subtitle()}
 			</p>
 
 			<p
 				class="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#637364] sm:text-lg dark:text-[#b8cbb5]"
 			>
-				Have a question about our farm or products? We'd love to hear from you.
-				Reach out to one of our locations below.
+				{m.contact_hero_description()}
 			</p>
 		</div>
 	</section>
@@ -94,17 +102,17 @@
 			<p
 				class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#78966b] dark:text-[#a4c39b]"
 			>
-				We're Here to Help
+				{m.contact_section_eyebrow()}
 			</p>
 
 			<h2
 				class="text-3xl font-bold tracking-tight text-[#253e2b] sm:text-4xl dark:text-[#e5f0e2]"
 			>
-				Our Contacts
+				{m.contact_section_title()}
 			</h2>
 
 			<p class="mt-3 text-base leading-7 text-[#798478] dark:text-[#b8cbb5]">
-				Choose the contact that works best for you.
+				{m.contact_section_description()}
 			</p>
 		</div>
 
@@ -116,9 +124,9 @@
 					<div
 						class="border-b border-[#e5e9df] bg-[#f0f5ed] p-7 sm:p-8 dark:border-[#3c5641] dark:bg-[#2e4934]"
 					>
-						<div class="mb-5 flex items-center justify-between">
+						<div class="mb-5 flex items-center justify-between gap-2">
 							<div
-								class="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#315c3b] text-white dark:bg-[#527d56]"
+								class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#315c3b] text-white dark:bg-[#527d56]"
 							>
 								<svg
 									class="h-6 w-6"
@@ -130,9 +138,7 @@
 									stroke-linejoin="round"
 									aria-hidden="true"
 								>
-									<path
-										d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"
-									/>
+									<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" />
 									<circle cx="12" cy="10" r="2.5" />
 								</svg>
 							</div>
@@ -140,25 +146,22 @@
 							<span
 								class="rounded-full bg-white px-4 py-2 text-xs font-semibold text-[#47704b] dark:bg-[#34543a] dark:text-[#c8e5bf]"
 							>
-								{location.subtitle}
+								{location.subtitle()}
 							</span>
 						</div>
 
-						<h3
-							class="text-3xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]"
-						>
-							{location.name}
+						<h3 class="text-3xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]">
+							{location.name()}
 						</h3>
-
 						<p class="mt-1 text-lg font-medium text-[#78966b] dark:text-[#a4c39b]">
-							{location.chineseName}
+							{location.secondaryName()}
 						</p>
 
 						<div
 							class="mt-5 inline-flex items-center gap-2 rounded-full bg-[#e2eddd] px-4 py-2 text-xs font-semibold text-[#47704b] dark:bg-[#34543a] dark:text-[#c8e5bf]"
 						>
 							<span class="h-2 w-2 rounded-full bg-[#6a985d]"></span>
-							{location.languages}
+							{location.languages()}
 						</div>
 					</div>
 
@@ -168,7 +171,7 @@
 								<p
 									class="mb-2 text-xs font-bold uppercase tracking-wider text-[#8a9689] dark:text-[#a4b8a4]"
 								>
-									{contact.label}
+									{contact.label()}
 								</p>
 
 								<a
@@ -177,7 +180,7 @@
 								>
 									{contact.value}
 									<svg
-										class="h-4 w-4"
+										class="h-4 w-4 shrink-0"
 										viewBox="0 0 24 24"
 										fill="none"
 										stroke="currentColor"
@@ -190,41 +193,24 @@
 									</svg>
 								</a>
 
-								{#if 'note' in contact && contact.note}
+								{#if contact.note?.()}
 									<p class="mt-2 text-sm leading-6 text-[#718073] dark:text-[#b8cbb5]">
-										{contact.note}
+										{contact.note?.()}
 									</p>
 								{/if}
 							</div>
 						{/each}
 
-						{#if location.name === 'Waterford'}
-							<div
-								class="mt-auto rounded-2xl border border-[#e2e9df] bg-[#f7faf5] p-5 dark:border-[#45614a] dark:bg-[#2e4934]"
-							>
-								<p
-									class="mb-1 text-sm font-semibold text-[#315c3b] dark:text-[#c8e5bf]"
-								>
-									WeChat | 微信
-								</p>
-								<p class="text-sm text-[#718073] dark:text-[#b8cbb5]">
-									Please contact us for WeChat details.
-								</p>
-							</div>
-						{:else}
-							<div
-								class="mt-auto rounded-2xl border border-[#e2e9df] bg-[#f7faf5] p-5 dark:border-[#45614a] dark:bg-[#2e4934]"
-							>
-								<p
-									class="mb-1 text-sm font-semibold text-[#315c3b] dark:text-[#c8e5bf]"
-								>
-									WeChat | 微信
-								</p>
-								<p class="text-sm text-[#718073] dark:text-[#b8cbb5]">
-									Please contact us for WeChat details.
-								</p>
-							</div>
-						{/if}
+						<div
+							class="mt-auto rounded-2xl border border-[#e2e9df] bg-[#f7faf5] p-5 dark:border-[#45614a] dark:bg-[#2e4934]"
+						>
+							<p class="mb-1 text-sm font-semibold text-[#315c3b] dark:text-[#c8e5bf]">
+								{m.contact_wechat_label()}
+							</p>
+							<p class="text-sm text-[#718073] dark:text-[#b8cbb5]">
+								{m.contact_wechat_note()}
+							</p>
+						</div>
 					</div>
 				</article>
 			{/each}
@@ -254,14 +240,13 @@
 			<h2
 				class="text-2xl font-bold tracking-tight text-[#23452f] sm:text-3xl dark:text-[#e5f0e2]"
 			>
-				We Look Forward to Hearing From You!
+				{m.contact_cta_title()}
 			</h2>
 
 			<p
 				class="mx-auto mt-4 max-w-xl text-sm leading-7 text-[#637364] sm:text-base dark:text-[#b8cbb5]"
 			>
-				Whether you have questions about our produce or want to learn more about
-				our farm, we're happy to help.
+				{m.contact_cta_description()}
 			</p>
 		</div>
 	</main>
@@ -269,15 +254,13 @@
 	<section class="bg-[#315c3b] px-5 py-14 text-center text-white dark:bg-[#1c3424]">
 		<div class="mx-auto max-w-2xl">
 			<p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#b8d5b2]">
-				Happy Farmhouse | 幸福农庄
+				{m.contact_footer_brand()}
 			</p>
-
 			<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">
-				Grown With Care.
+				{m.contact_footer_title()}
 			</h2>
-
 			<p class="mx-auto mt-5 max-w-xl text-sm leading-7 text-[#d4e3d1] sm:text-base">
-				Bringing fresh, naturally grown produce to our community.
+				{m.contact_footer_description()}
 			</p>
 		</div>
 	</section>

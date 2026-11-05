@@ -1,9 +1,11 @@
+
 <script lang="ts">
-	import { locales, localizeHref } from '$lib/paraglide/runtime';
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import DefaultNavbar from '$lib/components/default-navbar.svelte';
 	import { page } from '$app/state';
+	import { locales, localizeHref } from '$lib/paraglide/runtime.js';
+
 	const { children } = $props();
 </script>
 
@@ -17,17 +19,16 @@
 	/>
 </svelte:head>
 
-
-<DefaultNavbar/>
-
+<DefaultNavbar />
 
 <div class="min-h-dvh bg-white text-gray-900 dark:bg-zinc-950 dark:text-gray-100">
 	{@render children?.()}
 </div>
-<div style="display:none">
+
+<nav aria-hidden="true" style="display: none">
 	{#each locales as locale}
 		<a href={localizeHref(page.url.pathname, { locale })}>
 			{locale}
 		</a>
 	{/each}
-</div>
+</nav>

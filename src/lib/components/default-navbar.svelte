@@ -1,17 +1,33 @@
 
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { page } from '$app/state';
+	import { m } from '$lib/paraglide/messages.js';
+	import {
+		getLocale,
+		setLocale,
+		localizeHref,
+		deLocalizeHref
+	} from '$lib/paraglide/runtime.js';
 
-	const currentPath = $derived(page.url.pathname);
-	const isActive = (href: string) => currentPath === href;
+	const currentPath = $derived(deLocalizeHref(page.url.pathname));
+
+	const isActive = (href: string) => {
+		const normalize = (path: string) => path.replace(/\/+$/, '') || '/';
+
+		return normalize(currentPath) === normalize(href);
+	};
 
 	let mobileOpen = $state(false);
 	let theme = $state<'light' | 'dark'>('light');
+	let themeReady = $state(false);
 
-	$effect(() => {
-		if (typeof window === 'undefined') return;
+	onMount(() => {
+		let stored: string | null = null;
 
-		const stored = localStorage.getItem('theme');
+		try {
+			stored = localStorage.getItem('theme');
+		} catch {}
 
 		if (stored === 'light' || stored === 'dark') {
 			theme = stored;
@@ -20,10 +36,12 @@
 				? 'dark'
 				: 'light';
 		}
+
+		themeReady = true;
 	});
 
 	$effect(() => {
-		if (typeof document === 'undefined') return;
+		if (!themeReady) return;
 
 		document.documentElement.classList.toggle('dark', theme === 'dark');
 
@@ -36,10 +54,16 @@
 		theme = theme === 'light' ? 'dark' : 'light';
 	}
 
+	function changeLanguage(locale: 'en' | 'zh-CN') {
+		if (getLocale() !== locale) {
+			setLocale(locale);
+		}
+	}
+
 	const links = [
-		{ href: '/about', label: 'About' },
-		{ href: '/products_services', label: 'Products & Services' },
-		{ href: '/contact', label: 'Contact Us' }
+		{ href: '/about', label: m.nav_about },
+		{ href: '/products_services', label: m.nav_products },
+		{ href: '/contact', label: m.nav_contact }
 	];
 </script>
 
@@ -49,14 +73,13 @@
 	<div class="mx-auto max-w-6xl px-5">
 		<div class="flex h-20 items-center justify-between gap-4">
 
-			<!-- Farm Logo -->
 			<a
-				href="/"
+				href={localizeHref('/')}
 				class="group flex min-w-0 items-center gap-3"
 				aria-label="Happy Farmhouse Home"
 			>
 				<div
-					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#315c3b] text-white shadow-md shadow-green-900/10 transition duration-300 group-hover:-rotate-6 group-hover:scale-105"
+					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#315c3b] text-white shadow-md transition duration-300 group-hover:-rotate-6 group-hover:scale-105"
 				>
 					<svg
 						class="h-6 w-6"
@@ -87,38 +110,55 @@
 				</div>
 			</a>
 
-			<!-- Desktop Navigation -->
-			<div class="hidden items-center gap-2 md:flex">
+			<div class="hidden items-center gap-2 lg:flex">
 				{#each links as link}
 					<a
-						href={link.href}
-						class="relative rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200"
-						class:bg-[#e5efe1]={isActive(link.href)}
-						class:text-[#315c3b]={isActive(link.href)}
-						class:dark:bg-[#344d39]={isActive(link.href)}
-						class:dark:text-[#c8e5bf]={isActive(link.href)}
-						class:text-[#637364]={!isActive(link.href)}
-						class:dark:text-[#c0d0bc]={!isActive(link.href)}
-						class:hover:bg-[#eaf0e4]={!isActive(link.href)}
-						class:dark:hover:bg-[#344d39]={!isActive(link.href)}
-						class:hover:text-[#315c3b]={!isActive(link.href)}
-						class:dark:hover:text-white={!isActive(link.href)}
+						href={localizeHref(link.href)}
+						class="rounded-full px-4 py-2.5 text-sm font-semibold transition-colors duration-200 {isActive(link.href)
+							? 'bg-[#e5efe1] text-[#315c3b] dark:bg-[#344d39] dark:text-[#c8e5bf]'
+							: 'text-[#637364] hover:bg-[#eaf0e4] hover:text-[#315c3b] dark:text-[#c0d0bc] dark:hover:bg-[#344d39] dark:hover:text-white'}"
 						aria-current={isActive(link.href) ? 'page' : undefined}
 					>
-						{link.label}
+						{link.label()}
 					</a>
 				{/each}
 			</div>
 
-			<!-- Right Controls -->
-			<div class="flex items-center gap-2">
+			<div class="flex shrink-0 items-center gap-2">
 
-				<!-- Theme Toggle -->
+				<div
+					class="flex items-center gap-1 rounded-full border border-[#dce6d8] bg-[#e5efe1] p-1 dark:border-[#45614a] dark:bg-[#2a4030]"
+					role="group"
+					aria-label="Select language"
+				>
+					<button
+						type="button"
+						onclick={() => changeLanguage('en')}
+						aria-pressed={getLocale() === 'en'}
+						class="rounded-full px-3 py-2 text-xs font-bold transition-colors duration-200 sm:text-sm {getLocale() === 'en'
+							? 'bg-[#315c3b] text-white'
+							: 'text-[#47704b] hover:bg-[#d4e3cb] dark:text-[#c8e5bf] dark:hover:bg-[#3b5841]'}"
+					>
+						EN
+					</button>
+
+					<button
+						type="button"
+						onclick={() => changeLanguage('zh-CN')}
+						aria-pressed={getLocale() === 'zh-CN'}
+						class="rounded-full px-3 py-2 text-xs font-bold transition-colors duration-200 sm:text-sm {getLocale() === 'zh-CN'
+							? 'bg-[#315c3b] text-white'
+							: 'text-[#47704b] hover:bg-[#d4e3cb] dark:text-[#c8e5bf] dark:hover:bg-[#3b5841]'}"
+					>
+						中文
+					</button>
+				</div>
+
 				<button
 					type="button"
 					aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
 					title={theme === 'light' ? 'Dark mode' : 'Light mode'}
-					class="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce6d8] bg-white text-lg shadow-sm transition duration-200 hover:scale-105 hover:bg-[#eaf0e4] dark:border-[#45614a] dark:bg-[#2a4030] dark:hover:bg-[#38543e]"
+					class="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce6d8] bg-white text-lg shadow-sm transition hover:scale-105 hover:bg-[#eaf0e4] dark:border-[#45614a] dark:bg-[#2a4030] dark:hover:bg-[#38543e]"
 					onclick={toggleTheme}
 				>
 					{#if theme === 'light'}
@@ -128,10 +168,9 @@
 					{/if}
 				</button>
 
-				<!-- Mobile Menu Toggle -->
 				<button
 					type="button"
-					class="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce6d8] bg-white text-[#315c3b] transition hover:bg-[#eaf0e4] md:hidden dark:border-[#45614a] dark:bg-[#2a4030] dark:text-[#d5e8cf]"
+					class="flex h-11 w-11 items-center justify-center rounded-full border border-[#dce6d8] bg-white text-[#315c3b] transition hover:bg-[#eaf0e4] lg:hidden dark:border-[#45614a] dark:bg-[#2a4030] dark:text-[#d5e8cf]"
 					aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
 					aria-expanded={mobileOpen}
 					aria-controls="mobile-navigation"
@@ -158,40 +197,31 @@
 		</div>
 	</div>
 
-	<!-- Mobile Navigation -->
 	{#if mobileOpen}
 		<div
 			id="mobile-navigation"
-			class="border-t border-[#dce6d8] bg-[#faf9f5] md:hidden dark:border-[#344d39] dark:bg-[#1c2e22]"
+			class="border-t border-[#dce6d8] bg-[#faf9f5] lg:hidden dark:border-[#344d39] dark:bg-[#1c2e22]"
 		>
 			<div class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-5">
-
 				{#each links as link}
 					<a
-						href={link.href}
-						class="flex items-center justify-between rounded-xl px-5 py-3.5 text-sm font-semibold transition"
-						class:bg-[#e5efe1]={isActive(link.href)}
-						class:text-[#315c3b]={isActive(link.href)}
-						class:dark:bg-[#344d39]={isActive(link.href)}
-						class:dark:text-[#c8e5bf]={isActive(link.href)}
-						class:text-[#637364]={!isActive(link.href)}
-						class:dark:text-[#c0d0bc]={!isActive(link.href)}
-						class:hover:bg-[#eaf0e4]={!isActive(link.href)}
-						class:dark:hover:bg-[#344d39]={!isActive(link.href)}
+						href={localizeHref(link.href)}
+						class="flex items-center justify-between rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors {isActive(link.href)
+							? 'bg-[#e5efe1] text-[#315c3b] dark:bg-[#344d39] dark:text-[#c8e5bf]'
+							: 'text-[#637364] hover:bg-[#eaf0e4] dark:text-[#c0d0bc] dark:hover:bg-[#344d39]'}"
 						aria-current={isActive(link.href) ? 'page' : undefined}
 						onclick={() => (mobileOpen = false)}
 					>
-						{link.label}
+						{link.label()}
 						<span class="text-lg opacity-50" aria-hidden="true">→</span>
 					</a>
 				{/each}
 
 				<div class="mt-3 border-t border-[#dce6d8] pt-4 text-center dark:border-[#344d39]">
-					<p class="text-xs font-medium tracking-wide text-[#78966b]">
-						Naturally Grown With Care
+					<p class="text-xs font-medium tracking-wide text-[#78966b] dark:text-[#a4c39b]">
+						Happy Farmhouse | 幸福农庄
 					</p>
 				</div>
-
 			</div>
 		</div>
 	{/if}
