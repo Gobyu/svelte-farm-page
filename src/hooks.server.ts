@@ -5,6 +5,7 @@ import { m } from '$lib/paraglide/messages.js';
 
 export const handle: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
+		console.log('Request URL:', event.request.url);
 		console.log('Detected locale:', locale);
 		console.log('Translated contact:', m.nav_contact());
 		return resolve(
