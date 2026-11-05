@@ -49,11 +49,6 @@
 		]
 	},
 	"dependencies": {
-		"@types/bcrypt": "^6.0.0",
-		"@types/jsonwebtoken": "^9.0.10",
-		"bcrypt": "^6.0.0",
-		"jsonwebtoken": "^9.0.2",
-		"leaflet": "^1.9.4",
-		"mysql2": "^3.15.1"
+		"leaflet": "^1.9.4"
 	}
 }
