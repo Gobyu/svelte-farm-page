@@ -5,9 +5,10 @@ import { m } from '$lib/paraglide/messages.js';
 
 export const handle: Handle = ({ event, resolve }) =>
 	paraglideMiddleware(event.request, ({ request, locale }) => {
-		console.log('Request URL:', event.request.url);
 		console.log('Detected locale:', locale);
-		console.log('Translated contact:', m.nav_contact());
+		console.log('Default translation:', m.nav_contact());
+		console.log('Explicit Chinese:', m.nav_contact({}, { locale: 'zh-CN' }));
+		console.log('Explicit English:', m.nav_contact({}, { locale: 'en' }));
 		return resolve(
 			{ ...event, request },
 			{
