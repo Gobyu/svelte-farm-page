@@ -1,2 +1,2 @@
 // routes/+layout.ts
-export const prerender = true;
+export const prerender = false;
