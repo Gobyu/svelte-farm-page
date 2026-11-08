@@ -62,7 +62,6 @@
 
 	const links = [
 		{ href: '/about', label: m.nav_about },
-		{ href: '/products_services', label: m.nav_products },
 		{ href: '/contact', label: m.nav_contact }
 	];
 </script>
