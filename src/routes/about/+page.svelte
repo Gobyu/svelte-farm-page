@@ -1,48 +1,46 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages.js';
+	import healthier_svg from '$lib/assets/healthier.svg';
+	import tastier_svg from '$lib/assets/tastier.svg';
+	import eco_friendly_svg from '$lib/assets/eco friendly.svg';
+
 	const principles = [
 		{
 			title: m.about_principle_healthier_title,
-			description:
-				m.about_principle_healthier_description
+			description: m.about_principle_healthier_description,
+			svg: healthier_svg
 		},
 		{
 			title: m.about_principle_tastier_title,
-			description:
-				m.about_principle_tastier_description
+			description: m.about_principle_tastier_description,
+			svg: tastier_svg
 		},
 		{
 			title: m.about_principle_eco_title,
-			description:
-				m.about_principle_eco_description
+			description: m.about_principle_eco_description,
+			svg: eco_friendly_svg
 		}
 	];
 
 	const growingSteps = [
 		{
 			title: m.about_step_pesticides_title,
-			description:
-				m.about_step_pesticides_description
+			description: m.about_step_pesticides_description
 		},
 		{
 			title: m.about_step_fertilizers_title,
-			description:
-				m.about_step_fertilizers_description
+			description: m.about_step_fertilizers_description
 		},
 		{
 			title: m.about_step_harvest_title,
-			description:
-				m.about_step_harvest_description
+			description: m.about_step_harvest_description
 		}
 	];
 </script>
 
 <svelte:head>
 	<title>{m.about_page_title()}</title>
-	<meta
-		name="description"
-		content={m.about_meta_description()}
-	/>
+	<meta name="description" content={m.about_meta_description()} />
 </svelte:head>
 
 <div
@@ -161,14 +159,6 @@
 							<path d="M416 198C389 196 372 213 370 232C398 234 414 217 416 198Z" fill="#5d985b" />
 						</svg>
 					</div>
-
-					<div
-						class="border-t border-[#d0dfca] bg-[#f0f5ed] p-6 text-center dark:border-[#45614a] dark:bg-[#34543a]"
-					>
-						<p class="text-sm font-semibold text-[#315c3b] dark:text-[#c8e5bf]">
-							{m.about_illustration_caption()}
-						</p>
-					</div>
 				</div>
 
 				<div>
@@ -218,8 +208,18 @@
 				<div class="grid gap-6 md:grid-cols-3">
 					{#each principles as principle}
 						<article
-							class="rounded-3xl border border-[#e7e9e1] bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#315c3b]/10 dark:border-[#3c5641] dark:bg-[#24382a] dark:hover:shadow-black/20"
+							class="flex flex-col items-center rounded-3xl border border-[#e7e9e1] bg-white p-7 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#315c3b]/10 dark:border-[#3c5641] dark:bg-[#24382a] dark:hover:shadow-black/20"
 						>
+							<div
+								class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#edf5e9] p-4 text-[#315c3b] dark:bg-[#344e38] dark:text-[#b8dbad]"
+							>
+								<span
+									class="h-full w-full bg-current"
+									style={`mask: url("${principle.svg}") center / contain no-repeat; -webkit-mask: url("${principle.svg}") center / contain no-repeat;`}
+									aria-hidden="true"
+								></span>
+							</div>
+
 							<h3 class="text-xl font-bold tracking-tight text-[#253e2b] dark:text-[#e5f0e2]">
 								{principle.title()}
 							</h3>
@@ -266,9 +266,7 @@
 		</section>
 
 		<section class="mx-auto max-w-6xl sm:pb-20">
-			<div
-				class="relative overflow-hidden rounded-3xl text-center"
-			>
+			<div class="relative overflow-hidden rounded-3xl text-center">
 				<a
 					href="/contact"
 					class=" inline-flex items-center justify-center gap-2 rounded-full bg-[#315c3b] px-7 py-3 text-sm font-semibold text-white transition hover:bg-[#47704b] dark:bg-[#527d56] dark:hover:bg-[#648e67]"
@@ -293,7 +291,9 @@
 
 	<section class="bg-[#315c3b] px-5 py-14 text-center text-white dark:bg-[#1c3424]">
 		<div class="mx-auto max-w-2xl">
-			<p class="mb-3 text-xs font-bold tracking-[0.2em] text-[#b8d5b2] uppercase">{m.about_footer_eyebrow()}</p>
+			<p class="mb-3 text-xs font-bold tracking-[0.2em] text-[#b8d5b2] uppercase">
+				{m.about_footer_eyebrow()}
+			</p>
 
 			<h2 class="text-3xl font-bold tracking-tight sm:text-4xl">{m.about_footer_title()}</h2>
 
