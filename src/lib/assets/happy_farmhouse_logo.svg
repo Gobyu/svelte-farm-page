@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="440" viewBox="0 0 1200 440" role="img" aria-labelledby="title description">
+  <title id="title">Happy Farmhouse logo</title>
+  <desc id="description">A warm illustrated barn beneath a rising sun and rolling green fields beside the words Happy Farmhouse.</desc>
+  <g transform="translate(22 20)">
+    <!-- Farm emblem -->
+    <circle cx="200" cy="200" r="176" fill="#F7F0DF"/>
+    <clipPath id="farm-circle"><circle cx="200" cy="200" r="176"/></clipPath>
+    <g clip-path="url(#farm-circle)">
+      <!-- Sunrise -->
+      <g stroke="#E6B05E" stroke-width="7" stroke-linecap="round">
+        <path d="M287 61v-13 M287 143v13 M246 102h-13 M328 102h13 M258 73l-9-9 M316 131l9 9 M316 73l9-9 M258 131l-9 9"/>
+      </g>
+      <circle cx="287" cy="102" r="28" fill="#E6B05E"/>
+      <!-- Distant hills -->
+      <path d="M-10 270C48 220 103 226 159 256C224 196 281 209 410 248V403H-10Z" fill="#C2CC9A"/>
+      <path d="M-18 310C72 269 123 288 191 319C265 259 333 272 417 307V405H-18Z" fill="#86A27B"/>
+      <!-- Main barn -->
+      <rect x="115" y="187" width="172" height="139" rx="5" fill="#CA7655"/>
+      <path d="M103 205L201 121L298 205" fill="none" stroke="#704D3E" stroke-width="21" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M121 205L201 137L280 205" fill="#E4B77D"/>
+      <path d="M121 205L201 137L280 205" fill="none" stroke="#B45B43" stroke-width="7" stroke-linejoin="round"/>
+      <rect x="184" y="168" width="34" height="35" rx="17" fill="#FFF4DA"/>
+      <path d="M200 170v31M185 185h32" stroke="#B45B43" stroke-width="4"/>
+      <path d="M157 326v-76c0-25 19-44 44-44s44 19 44 44v76" fill="#F9E8C5"/>
+      <path d="M164 326v-76c0-21 16-37 37-37s37 16 37 37v76" fill="#765745"/>
+      <path d="M201 215v111" stroke="#F2CE9A" stroke-width="5"/>
+      <path d="M170 252l25 25-25 26M232 252l-25 25 25 26" fill="none" stroke="#E6B685" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="193" cy="283" r="3.5" fill="#F2CE9A"/>
+      <circle cx="209" cy="283" r="3.5" fill="#F2CE9A"/>
+      <!-- Foreground field -->
+      <path d="M-15 350C69 320 134 332 203 348C274 329 349 327 415 350V407H-15Z" fill="#527F64"/>
+      <path d="M49 364c34-13 69-15 109-6M234 357c33-9 66-9 100 0" fill="none" stroke="#A5BD88" stroke-width="5" stroke-linecap="round"/>
+    </g>
+    <!-- Subtle outside ring -->
+    <circle cx="200" cy="200" r="176" fill="none" stroke="#E5D8BD" stroke-width="4"/>
+  </g>
+  <!-- Brand wordmark -->
+  <g fill="#385D49">
+    <text x="443" y="203" font-family="Georgia, 'Times New Roman', serif" font-size="115" font-weight="bold" letter-spacing="-4">Happy</text>
+  </g>
+  <text x="451" y="278" fill="#B76C4B" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="50" font-weight="bold" letter-spacing="9">FARMHOUSE</text>
+  <path d="M454 312h578" stroke="#D9C6A3" stroke-width="4" stroke-linecap="round"/>
+  <path d="M454 330h180" stroke="#6C946D" stroke-width="7" stroke-linecap="round"/>
+</svg>

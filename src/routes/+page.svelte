@@ -1,6 +1,6 @@
-
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages.js';
+	import happyFarmhouseLogo from '$lib/assets/happy_farmhouse_logo.svg';
 
 	type Product = {
 		name: () => string;
@@ -25,7 +25,8 @@
 	const products: Product[] = [
 		{
 			name: m.products_butternut_name,
-			image: 'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Butternut%20Squash.jpg',
+			image:
+				'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Butternut%20Squash.jpg',
 			alt: m.products_butternut_alt,
 			price: '$10',
 			quantity: m.products_quantity_eight_pounds,
@@ -35,7 +36,8 @@
 		},
 		{
 			name: m.products_kabocha_name,
-			image: 'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Kabocha%20Squash.jpg',
+			image:
+				'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Kabocha%20Squash.jpg',
 			alt: m.products_kabocha_alt,
 			price: '$10',
 			quantity: m.products_quantity_eight_pounds,
@@ -48,7 +50,8 @@
 	const upcomingProducts: UpcomingProduct[] = [
 		{
 			name: m.products_green_beans_name,
-			image: 'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Green%20Beans.jpg',
+			image:
+				'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Green%20Beans.jpg',
 			alt: m.products_green_beans_alt,
 			availability: m.products_september,
 			description: m.products_green_beans_description,
@@ -59,12 +62,8 @@
 
 <svelte:head>
 	<title>{m.products_page_title()}</title>
-	<meta
-		name="description"
-		content={m.products_meta_description()}
-	/>
+	<meta name="description" content={m.products_meta_description()} />
 </svelte:head>
-
 <div
 	class="min-h-screen bg-[#faf9f5] text-[#253b2c] transition-colors duration-300 dark:bg-[#14251a] dark:text-[#e5f0e2]"
 >
@@ -72,25 +71,21 @@
 		class="relative overflow-hidden bg-[#eaf0e4] transition-colors duration-300 dark:bg-[#203b29]"
 	>
 		<div
-			class="absolute -right-24 -top-32 h-96 w-96 rounded-full bg-[#dbe7d2] opacity-70 blur-3xl dark:bg-[#36573b] dark:opacity-30"
+			class="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-[#dbe7d2] opacity-70 blur-3xl dark:bg-[#36573b] dark:opacity-30"
 		></div>
 		<div
 			class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-[#d4e3cb] opacity-60 blur-3xl dark:bg-[#36573b] dark:opacity-30"
 		></div>
 
 		<div class="relative mx-auto max-w-6xl px-5 py-16 text-center sm:py-20">
-			<div
-				class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#c7d9bd] bg-white/70 px-5 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#47704b] dark:border-[#45614a] dark:bg-[#2a4030] dark:text-[#b8d5b2]"
-			>
-				<span class="h-2 w-2 rounded-full bg-[#6a985d]"></span>
-				{m.products_eyebrow()}
-			</div>
 
 			<h1
 				class="mx-auto max-w-3xl text-5xl font-bold tracking-tight text-[#23452f] sm:text-6xl md:text-7xl dark:text-[#e5f0e2]"
 			>
 				{m.products_hero_title_first()}
-				<span class="italic text-[#729765] dark:text-[#a4c39b]">{m.products_hero_title_second()}</span>
+				<span class="text-[#729765] italic dark:text-[#a4c39b]"
+					>{m.products_hero_title_second()}</span
+				>
 			</h1>
 
 			<p
@@ -142,7 +137,7 @@
 			<div class="mb-10 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
 				<div>
 					<p
-						class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#78966b] dark:text-[#a4c39b]"
+						class="mb-3 text-xs font-bold tracking-[0.2em] text-[#78966b] uppercase dark:text-[#a4c39b]"
 					>
 						{m.products_fresh_picks()}
 					</p>
@@ -153,9 +148,7 @@
 						{m.products_available_title()}
 					</h2>
 
-					<p
-						class="mt-3 max-w-xl text-base leading-7 text-[#798478] dark:text-[#b8cbb5]"
-					>
+					<p class="mt-3 max-w-xl text-base leading-7 text-[#798478] dark:text-[#b8cbb5]">
 						{m.products_available_description()}
 					</p>
 				</div>
@@ -173,9 +166,7 @@
 					<article
 						class="group overflow-hidden rounded-3xl border border-[#e7e9e1] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#315c3b]/10 dark:border-[#3c5641] dark:bg-[#24382a] dark:hover:shadow-black/20"
 					>
-						<div
-							class="relative h-64 overflow-hidden bg-[#e9eee5] sm:h-72 dark:bg-[#2e4934]"
-						>
+						<div class="relative h-64 overflow-hidden bg-[#e9eee5] sm:h-72 dark:bg-[#2e4934]">
 							<img
 								src={product.image}
 								alt={product.alt()}
@@ -183,7 +174,7 @@
 							/>
 
 							<span
-								class="absolute left-5 top-5 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-[#35643e] shadow-sm dark:bg-[#24382a]/95 dark:text-[#c8e5bf]"
+								class="absolute top-5 left-5 rounded-full bg-white/95 px-4 py-2 text-xs font-bold text-[#35643e] shadow-sm dark:bg-[#24382a]/95 dark:text-[#c8e5bf]"
 							>
 								{m.products_feature_farm_fresh()}
 							</span>
@@ -191,9 +182,7 @@
 
 						<div class="p-6 sm:p-8">
 							<div class="flex flex-wrap items-start justify-between gap-3">
-								<h3
-									class="text-2xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]"
-								>
+								<h3 class="text-2xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]">
 									{product.name()}
 								</h3>
 
@@ -225,9 +214,10 @@
 							>
 								<div>
 									<p
-										class="mb-1 text-xs font-medium uppercase tracking-wider text-[#8a9689] dark:text-[#a4b8a4]"
+										class="mb-1 text-xs font-medium tracking-wider text-[#8a9689] uppercase dark:text-[#a4b8a4]"
 									>
-										{m.products_price_per()} {product.quantity()}
+										{m.products_price_per()}
+										{product.quantity()}
 									</p>
 
 									<div class="flex items-baseline gap-2">
@@ -237,9 +227,7 @@
 											{product.price}
 										</span>
 
-										<span
-											class="text-sm font-medium text-[#8a9689] dark:text-[#a4b8a4]"
-										>
+										<span class="text-sm font-medium text-[#8a9689] dark:text-[#a4b8a4]">
 											/ {product.quantity()}
 										</span>
 									</div>
@@ -257,10 +245,10 @@
 			</div>
 		</section>
 
-		<section class="pb-20 pt-5">
+		<section class="pt-5 pb-20">
 			<div class="mb-10">
 				<p
-					class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#78966b] dark:text-[#a4c39b]"
+					class="mb-3 text-xs font-bold tracking-[0.2em] text-[#78966b] uppercase dark:text-[#a4c39b]"
 				>
 					{m.products_upcoming_eyebrow()}
 				</p>
@@ -271,9 +259,7 @@
 					{m.products_upcoming_title()}
 				</h2>
 
-				<p
-					class="mt-3 max-w-xl text-base leading-7 text-[#798478] dark:text-[#b8cbb5]"
-				>
+				<p class="mt-3 max-w-xl text-base leading-7 text-[#798478] dark:text-[#b8cbb5]">
 					{m.products_upcoming_description()}
 				</p>
 			</div>
@@ -283,9 +269,7 @@
 					<article
 						class="group overflow-hidden rounded-3xl border border-[#e7e9e1] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#315c3b]/10 dark:border-[#3c5641] dark:bg-[#24382a] dark:hover:shadow-black/20"
 					>
-						<div
-							class="relative h-64 overflow-hidden bg-[#e9eee5] sm:h-72 dark:bg-[#2e4934]"
-						>
+						<div class="relative h-64 overflow-hidden bg-[#e9eee5] sm:h-72 dark:bg-[#2e4934]">
 							<img
 								src={product.image}
 								alt={product.alt()}
@@ -293,16 +277,14 @@
 							/>
 
 							<span
-								class="absolute left-5 top-5 rounded-full bg-[#fff7e5] px-4 py-2 text-xs font-bold text-[#a17b32] shadow-sm dark:bg-[#57482c] dark:text-[#f0d69b]"
+								class="absolute top-5 left-5 rounded-full bg-[#fff7e5] px-4 py-2 text-xs font-bold text-[#a17b32] shadow-sm dark:bg-[#57482c] dark:text-[#f0d69b]"
 							>
 								{m.products_coming_next_year()}
 							</span>
 						</div>
 
 						<div class="p-6 sm:p-8">
-							<h3
-								class="text-2xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]"
-							>
+							<h3 class="text-2xl font-bold tracking-tight text-[#263e2b] dark:text-[#e5f0e2]">
 								{product.name()}
 							</h3>
 
@@ -327,7 +309,7 @@
 							>
 								<div>
 									<p
-										class="mb-1 text-xs font-medium uppercase tracking-wider text-[#8a9689] dark:text-[#a4b8a4]"
+										class="mb-1 text-xs font-medium tracking-wider text-[#8a9689] uppercase dark:text-[#a4b8a4]"
 									>
 										{m.products_expected_availability()}
 									</p>
@@ -356,7 +338,7 @@
 
 	<section class="bg-[#315c3b] px-5 py-14 text-center text-white dark:bg-[#1c3424]">
 		<div class="mx-auto max-w-2xl">
-			<p class="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#b8d5b2]">
+			<p class="mb-3 text-xs font-bold tracking-[0.2em] text-[#b8d5b2] uppercase">
 				{m.products_footer_eyebrow()}
 			</p>
 
