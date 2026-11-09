@@ -1,14 +1,8 @@
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { m } from '$lib/paraglide/messages.js';
-	import {
-		getLocale,
-		setLocale,
-		localizeHref,
-		deLocalizeHref
-	} from '$lib/paraglide/runtime.js';
+	import { getLocale, setLocale, localizeHref, deLocalizeHref } from '$lib/paraglide/runtime.js';
 
 	const currentPath = $derived(deLocalizeHref(page.url.pathname));
 
@@ -32,9 +26,7 @@
 		if (stored === 'light' || stored === 'dark') {
 			theme = stored;
 		} else {
-			theme = window.matchMedia('(prefers-color-scheme: dark)').matches
-				? 'dark'
-				: 'light';
+			theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 		}
 
 		themeReady = true;
@@ -62,6 +54,7 @@
 
 	const links = [
 		{ href: '/about', label: m.nav_about },
+		{ href: '/farm_life', label: m.nav_farm_life },
 		{ href: '/contact', label: m.nav_contact }
 	];
 </script>
@@ -71,14 +64,13 @@
 >
 	<div class="mx-auto max-w-6xl px-5">
 		<div class="flex h-20 items-center justify-between gap-4">
-
 			<a
 				href={localizeHref('/')}
 				class="group flex min-w-0 items-center gap-3"
 				aria-label="Happy Farmhouse Home"
 			>
 				<div
-					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#315c3b] text-white shadow-md transition duration-300 group-hover:-rotate-6 group-hover:scale-105"
+					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#315c3b] text-white shadow-md transition duration-300 group-hover:scale-105 group-hover:-rotate-6"
 				>
 					<svg
 						class="h-6 w-6"
@@ -97,7 +89,7 @@
 
 				<div class="flex flex-col">
 					<span
-						class="text-lg font-bold leading-tight tracking-tight text-[#23452f] transition group-hover:text-[#729765] sm:text-xl dark:text-[#e5f0e2]"
+						class="text-lg leading-tight font-bold tracking-tight text-[#23452f] transition group-hover:text-[#729765] sm:text-xl dark:text-[#e5f0e2]"
 					>
 						Happy Farmhouse
 					</span>
@@ -113,7 +105,9 @@
 				{#each links as link}
 					<a
 						href={localizeHref(link.href)}
-						class="rounded-full px-4 py-2.5 text-sm font-semibold transition-colors duration-200 {isActive(link.href)
+						class="rounded-full px-4 py-2.5 text-sm font-semibold transition-colors duration-200 {isActive(
+							link.href
+						)
 							? 'bg-[#e5efe1] text-[#315c3b] dark:bg-[#344d39] dark:text-[#c8e5bf]'
 							: 'text-[#637364] hover:bg-[#eaf0e4] hover:text-[#315c3b] dark:text-[#c0d0bc] dark:hover:bg-[#344d39] dark:hover:text-white'}"
 						aria-current={isActive(link.href) ? 'page' : undefined}
@@ -124,7 +118,6 @@
 			</div>
 
 			<div class="flex shrink-0 items-center gap-2">
-
 				<div
 					class="flex items-center gap-1 rounded-full border border-[#dce6d8] bg-[#e5efe1] p-1 dark:border-[#45614a] dark:bg-[#2a4030]"
 					role="group"
@@ -134,7 +127,8 @@
 						type="button"
 						onclick={() => changeLanguage('en')}
 						aria-pressed={getLocale() === 'en'}
-						class="rounded-full px-3 py-2 text-xs font-bold transition-colors duration-200 sm:text-sm {getLocale() === 'en'
+						class="rounded-full px-3 py-2 text-xs font-bold transition-colors duration-200 sm:text-sm {getLocale() ===
+						'en'
 							? 'bg-[#315c3b] text-white'
 							: 'text-[#47704b] hover:bg-[#d4e3cb] dark:text-[#c8e5bf] dark:hover:bg-[#3b5841]'}"
 					>
@@ -145,7 +139,8 @@
 						type="button"
 						onclick={() => changeLanguage('zh-CN')}
 						aria-pressed={getLocale() === 'zh-CN'}
-						class="rounded-full px-3 py-2 text-xs font-bold transition-colors duration-200 sm:text-sm {getLocale() === 'zh-CN'
+						class="rounded-full px-3 py-2 text-xs font-bold transition-colors duration-200 sm:text-sm {getLocale() ===
+						'zh-CN'
 							? 'bg-[#315c3b] text-white'
 							: 'text-[#47704b] hover:bg-[#d4e3cb] dark:text-[#c8e5bf] dark:hover:bg-[#3b5841]'}"
 					>
@@ -205,7 +200,9 @@
 				{#each links as link}
 					<a
 						href={localizeHref(link.href)}
-						class="flex items-center justify-between rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors {isActive(link.href)
+						class="flex items-center justify-between rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors {isActive(
+							link.href
+						)
 							? 'bg-[#e5efe1] text-[#315c3b] dark:bg-[#344d39] dark:text-[#c8e5bf]'
 							: 'text-[#637364] hover:bg-[#eaf0e4] dark:text-[#c0d0bc] dark:hover:bg-[#344d39]'}"
 						aria-current={isActive(link.href) ? 'page' : undefined}

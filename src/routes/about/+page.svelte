@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages.js';
-	import healthier_svg from '$lib/assets/healthier.svg';
-	import tastier_svg from '$lib/assets/tastier.svg';
-	import eco_friendly_svg from '$lib/assets/eco friendly.svg';
+	const healthier_svg = 'https://images.happyfarmhouse.ca/assets/healthier.svg';
+	const tastier_svg = 'https://images.happyfarmhouse.ca/assets/tastier.svg';
+	const eco_friendly_svg = 'https://images.happyfarmhouse.ca/assets/eco%20friendly.svg';
 
 	const principles = [
 		{
@@ -47,36 +47,28 @@
 	class="min-h-screen bg-[#faf9f5] text-[#253b2c] transition-colors duration-300 dark:bg-[#14251a] dark:text-[#e5f0e2]"
 >
 	<section
-		class="relative overflow-hidden bg-[#eaf0e4] transition-colors duration-300 dark:bg-[#203b29]"
+		class="relative overflow-hidden bg-cover bg-center bg-no-repeat"
+		style="background-image: url('https://images.happyfarmhouse.ca/assets/Image_20261108224120.webp');"
 	>
-		<div
-			class="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-[#dbe7d2] opacity-70 blur-3xl dark:bg-[#36573b] dark:opacity-30"
-		></div>
-		<div
-			class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-[#d4e3cb] opacity-60 blur-3xl dark:bg-[#36573b] dark:opacity-30"
-		></div>
+		<!-- Dark overlay for text readability -->
+		<div class="absolute inset-0 bg-black/45"></div>
 
 		<div class="relative mx-auto max-w-6xl px-5 py-16 text-center sm:py-20">
-			<p
-				class="mb-5 text-xs font-bold tracking-[0.2em] text-[#78966b] uppercase dark:text-[#a4c39b]"
-			>
-				{m.about_hero_eyebrow()}
-			</p>
-
 			<h1
-				class="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-[#23452f] sm:text-6xl md:text-7xl dark:text-[#e5f0e2]"
+				class="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl"
 			>
 				{m.about_hero_title_main()}
-				<span class="text-[#78966b] dark:text-[#a4c39b]"> {m.about_hero_title_accent()} </span>
+				<span class="text-[#c6e4b7]">
+					{m.about_hero_title_accent()}
+				</span>
 			</h1>
 
-			<p
-				class="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#637364] sm:text-lg dark:text-[#b8cbb5]"
-			>
+			<p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/90 sm:text-lg">
 				{m.about_hero_description()}
 			</p>
 		</div>
 	</section>
+
 	<section
 		class="border-b border-[#e5e9df] bg-white transition-colors duration-300 dark:border-[#344d39] dark:bg-[#1c2e22]"
 	>
@@ -108,58 +100,11 @@
 	<main>
 		<section class="mx-auto max-w-6xl px-5 py-16 sm:py-24">
 			<div class="grid items-center gap-10 md:grid-cols-2 md:gap-16">
-				<div
-					class="relative overflow-hidden rounded-3xl border border-[#dce6d8] bg-[#e2eddd] dark:border-[#3c5641] dark:bg-[#2e4934]"
-				>
-					<div class="flex aspect-[5/4] items-center justify-center p-8">
-						<svg
-							viewBox="0 0 480 360"
-							class="h-full w-full max-w-md"
-							fill="none"
-							role="img"
-							aria-label={m.about_illustration_label()}
-						>
-							<circle cx="365" cy="75" r="42" fill="#f5dca0" />
-							<path
-								d="M0 230C80 195 140 215 220 190C310 165 385 195 480 160V360H0Z"
-								fill="#b7cfa9"
-							/>
-							<path
-								d="M0 270C100 230 190 260 275 225C355 195 410 230 480 205V360H0Z"
-								fill="#8fb087"
-							/>
-							<path
-								d="M0 310C105 280 220 300 320 265C385 245 430 265 480 250V360H0Z"
-								fill="#648c64"
-							/>
-							<path
-								d="M240 288V132M240 205C185 205 170 160 170 151C213 147 240 173 240 205ZM240 171C297 171 316 128 315 118C271 116 240 143 240 171Z"
-								stroke="#315c3b"
-								stroke-width="8"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							/>
-							<path d="M170 151C190 149 221 171 240 205C193 208 171 184 170 151Z" fill="#477f48" />
-							<path d="M315 118C289 117 255 143 240 171C285 175 312 149 315 118Z" fill="#5d985b" />
-							<path
-								d="M115 310V244M115 275C80 276 68 250 68 242C95 240 115 255 115 275ZM115 258C150 257 161 231 161 224C133 222 115 239 115 258Z"
-								stroke="#315c3b"
-								stroke-width="6"
-								stroke-linecap="round"
-							/>
-							<path d="M68 242C94 240 113 254 115 275C86 277 69 261 68 242Z" fill="#477f48" />
-							<path d="M161 224C135 222 116 237 115 258C145 261 161 242 161 224Z" fill="#5d985b" />
-							<path
-								d="M370 280V215M370 248C335 249 324 222 324 216C351 214 370 227 370 248ZM370 232C405 230 416 206 416 198C389 197 370 213 370 232Z"
-								stroke="#315c3b"
-								stroke-width="6"
-								stroke-linecap="round"
-							/>
-							<path d="M324 216C349 215 368 228 370 248C342 249 325 234 324 216Z" fill="#477f48" />
-							<path d="M416 198C389 196 372 213 370 232C398 234 414 217 416 198Z" fill="#5d985b" />
-						</svg>
-					</div>
-				</div>
+				<img
+					src="https://images.happyfarmhouse.ca/assets/Image_20261108224013.webp"
+					class="h-full w-full max-w-md rounded-3xl"
+					alt="Sunflowers"
+				/>
 
 				<div>
 					<p

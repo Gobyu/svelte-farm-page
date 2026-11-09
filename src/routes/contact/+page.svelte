@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages.js';
-	import waterfordImage from '$lib/assets/waterford.webp';
-	import torontoImage from '$lib/assets/toronto.webp';
+	const waterfordImage = 'https://images.happyfarmhouse.ca/assets/waterford.webp';
+	const torontoImage = 'https://images.happyfarmhouse.ca/assets/toronto.webp';
 
 	type Contact = {
 		label: () => string;
@@ -67,8 +67,14 @@
 	class="min-h-screen bg-[#faf9f5] text-[#253b2c] transition-colors duration-300 dark:bg-[#14251a] dark:text-[#e5f0e2]"
 >
 	<section
-		class="relative overflow-hidden bg-[#eaf0e4] transition-colors duration-300 dark:bg-[#203b29]"
+		class="relative overflow-hidden bg-cover bg-center bg-no-repeat"
+		style="
+		background-image: url('https://images.happyfarmhouse.ca/assets/Image_20261108224150.webp');
+		background-size: 100% auto;
+		"
 	>
+		<div class="absolute inset-0 bg-black/45"></div>
+
 		<div
 			class="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-[#dbe7d2] opacity-70 blur-3xl dark:bg-[#36573b] dark:opacity-30"
 		></div>

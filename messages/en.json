@@ -1,6 +1,6 @@
 {
 	"nav_about": "About",
-	"nav_products": "Products & Services",
+	"nav_farm_life": "Farm Life",
 	"nav_contact": "Contact Us",
 	"contact_page_title": "Contact Us | Happy Farmhouse",
 	"contact_meta_description": "Contact Happy Farmhouse in Waterford or Toronto. We are happy to assist you in English or Chinese.",
@@ -104,5 +104,28 @@
 	"about_contact_cta": "Get in Touch",
 	"about_footer_eyebrow": "Our Commitment",
 	"about_footer_title": "Naturally Grown. Simply Better.",
-	"about_footer_description": "Small-scale farming, no pesticides, no fertilizers, and a commitment to caring for the land and everything we grow."
+	"about_footer_description": "Small-scale farming, no pesticides, no fertilizers, and a commitment to caring for the land and everything we grow.",
+	"gallery_page_title": "Farm Gallery | Happy Farmhouse",
+	"gallery_meta_description": "Explore photos of our farm, growing process, and the natural beauty of Happy Farmhouse.",
+
+	"gallery_hero_eyebrow": "A GLIMPSE INTO OUR FARM",
+	"gallery_hero_title_main": "Life on ",
+	"gallery_hero_title_accent": "Our Farm",
+	"gallery_hero_description": "Take a closer look at our farm, from the fields where everything grows to the everyday moments that make it special.",
+
+	"gallery_section_eyebrow": "OUR PHOTO GALLERY",
+	"gallery_section_title": "Moments from the Farm",
+	"gallery_section_description": "A collection of photos showcasing our farm, the things we grow, and the beauty of nature.",
+
+	"gallery_view_photo": "View farm photo {number}",
+	"gallery_photo_alt": "Happy Farmhouse photo {number}",
+	"gallery_enlarged_photo_alt": "Enlarged farm photograph",
+	"gallery_lightbox_label": "Farm photo viewer",
+	"gallery_close_photo": "Close photo",
+
+	"gallery_contact_cta": "Get in Touch",
+
+	"gallery_footer_eyebrow": "HAPPY FARMHOUSE",
+	"gallery_footer_title": "Grown with Care",
+	"gallery_footer_description": "From our farm to your table, we're committed to growing fresh, quality produce naturally."
 }

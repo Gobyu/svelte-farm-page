@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { m } from '$lib/paraglide/messages.js';
-	import happyFarmhouseLogo from '$lib/assets/happy_farmhouse_logo.svg';
 
 	type Product = {
 		name: () => string;
@@ -25,8 +24,7 @@
 	const products: Product[] = [
 		{
 			name: m.products_butternut_name,
-			image:
-				'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Butternut%20Squash.jpg',
+			image: 'https://images.happyfarmhouse.ca/assets/Butternut%20Squash.webp',
 			alt: m.products_butternut_alt,
 			price: '$10',
 			quantity: m.products_quantity_eight_pounds,
@@ -36,8 +34,7 @@
 		},
 		{
 			name: m.products_kabocha_name,
-			image:
-				'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Kabocha%20Squash.jpg',
+			image: 'https://images.happyfarmhouse.ca/assets/Kabocha%20Squash.webp',
 			alt: m.products_kabocha_alt,
 			price: '$10',
 			quantity: m.products_quantity_eight_pounds,
@@ -50,8 +47,7 @@
 	const upcomingProducts: UpcomingProduct[] = [
 		{
 			name: m.products_green_beans_name,
-			image:
-				'https://raw.githubusercontent.com/Gobyu/svelte-farm-page/refs/heads/main/src/lib/assets/Green%20Beans.jpg',
+			image: 'https://images.happyfarmhouse.ca/assets/Green%20Beans.webp',
 			alt: m.products_green_beans_alt,
 			availability: m.products_september,
 			description: m.products_green_beans_description,
@@ -67,30 +63,32 @@
 <div
 	class="min-h-screen bg-[#faf9f5] text-[#253b2c] transition-colors duration-300 dark:bg-[#14251a] dark:text-[#e5f0e2]"
 >
-	<section
-		class="relative overflow-hidden bg-[#eaf0e4] transition-colors duration-300 dark:bg-[#203b29]"
-	>
+	<section class="relative overflow-hidden bg-[#203b29]">
+		<!-- Background image: adjust zoom and position here -->
 		<div
-			class="absolute -top-32 -right-24 h-96 w-96 rounded-full bg-[#dbe7d2] opacity-70 blur-3xl dark:bg-[#36573b] dark:opacity-30"
-		></div>
-		<div
-			class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-[#d4e3cb] opacity-60 blur-3xl dark:bg-[#36573b] dark:opacity-30"
+			class="absolute inset-0 bg-no-repeat"
+			style="
+    background-image: url('https://images.happyfarmhouse.ca/assets/Image_20261108224048.webp');
+    background-size: 100% auto;
+    background-position: 50% 70%;
+  "
 		></div>
 
+		<!-- Dark overlay -->
+		<div class="absolute inset-0 bg-black/45"></div>
+
+		<!-- Hero content -->
 		<div class="relative mx-auto max-w-6xl px-5 py-16 text-center sm:py-20">
-
 			<h1
-				class="mx-auto max-w-3xl text-5xl font-bold tracking-tight text-[#23452f] sm:text-6xl md:text-7xl dark:text-[#e5f0e2]"
+				class="mx-auto max-w-3xl text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl"
 			>
 				{m.products_hero_title_first()}
-				<span class="text-[#729765] italic dark:text-[#a4c39b]"
-					>{m.products_hero_title_second()}</span
-				>
+				<span class="text-[#c6e4b7] italic">
+					{m.products_hero_title_second()}
+				</span>
 			</h1>
 
-			<p
-				class="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#637364] sm:text-lg dark:text-[#b8cbb5]"
-			>
+			<p class="mx-auto mt-6 max-w-2xl text-base leading-8 text-white/90 sm:text-lg">
 				{m.products_hero_description()}
 			</p>
 
